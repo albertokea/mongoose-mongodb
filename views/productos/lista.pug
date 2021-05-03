@@ -1,0 +1,29 @@
+extends ../layout.pug
+
+block content
+    h1 Lista de productos
+    table.table.table-dark
+        thead
+            tr
+                th Nombre
+                th Precio
+                th Precio (Iva)
+                th Departamento
+                th Activo
+                th Fecha Inserción
+                th Imagen
+                th Acciones
+        tbody
+            each producto in productos
+                tr
+                    td= producto.nombre
+                    td= producto.precio + '€'
+                    td #{producto.precio_iva}€
+                    td= producto.departamento
+                    td= producto.activo
+                    td= producto.fecha_insercion
+                    td
+                        img(src=producto.imagen, width="100px")
+                    td
+                        a.btn.btn-sm.btn-info(href="/productos/edit/"+producto._id) Editar
+                        a.btn.btn-sm.btn-danger.mt-4(href="/productos/delete/"+producto._id) Eliminar
